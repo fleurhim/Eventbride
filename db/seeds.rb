@@ -16,17 +16,18 @@ Attendance.destroy_all
   User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    description: Faker::Lorem.sentence(word_count: 5), 
-    email: Faker::Name.first_name + "@yopmail.com"
+    description: Faker::Lorem.sentence(word_count: 10), 
+    email: Faker::Name.first_name + "@yopmail.com",
+    password: Faker::String.random(length: 6)
   )
 end
 
-5.times do
+10.times do
 	Event.create(
 	    start_date: Faker::Date.forward(days: 23),
 	    duration: [5, 15, 30, 60].sample,
 	    title: Faker::Lorem.sentence(word_count: 3),
-	    description: Faker::Lorem.sentence(word_count: 5),
+	    description: Faker::Lorem.sentence(word_count: 15),
 	    price: Faker::Number.between(from: 1, to: 1000),
 	    location: Faker::Address.city,
 	    user_id: rand(User.first.id..User.last.id)

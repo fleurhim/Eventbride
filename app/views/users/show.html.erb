@@ -1,0 +1,40 @@
+<div class="container" style="width: 100em; height: 100px; margin: 5em auto">
+  <div class="row" style="justify-content:center">
+    <div class="col-md-9">
+      <div class="card">
+        
+
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.first_name%> <%= @user.last_name%></h5>
+          <p class="card-text"><%= @user.description%></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          
+          <li class="list-group-item">First Name: <%= @user.first_name%> </li>
+          <li class="list-group-item">Last Name: <%= @user.last_name%> </li>
+          <li class="list-group-item">Email: <%= @user.email%></li>
+        </ul>
+        <div class="card-body">
+          <%= link_to "Edit your profil", edit_user_registration_path, class: "card-link" %>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+      <br><br>
+      <h4 class="display">Les évènements que tu organises:</h4>
+      <br>
+    </div>
+    <% @events.each do |event|%>
+      <div class="col-md-4" style="text-align: justify">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title%></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.location%></h6>
+            <p class="card-text"><%= event.description%></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

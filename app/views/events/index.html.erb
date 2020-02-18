@@ -1,0 +1,23 @@
+
+<div class="jumbotron">
+  <div class="container">
+     <h1 class="display-3">Sortir. Partager. Découvrir.</h1>
+     <p>Eventbrite rapproche les gens grâce à des expériences en direct. Découvrez des événements qui correspondent à vos passions ou créez votre propre événement avec les outils de billetterie en ligne.</p>
+     <p><%= link_to "Créer un évènement", new_event_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+</div>
+
+<main role="main">
+  <div class="container">
+    <div class="row">
+      <% @events.each do |event| %>
+        <div class="col-md-4" style="text-align: justify">
+        <h2 class="card-title"><%= event.title%></h2>
+        <h6 class="card-subtitle mb-2 text-muted">By <%= event.user.first_name + " " + event.user.last_name%></h6>
+        <p> <%= event.description %> </p>
+        <p><%= link_to "View details", event_path(event.id), class: "btn btn-secondary" %></p>
+        </div>
+        <% end %>
+    </div>
+  </div> 
+</main>
