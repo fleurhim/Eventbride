@@ -13,7 +13,9 @@
       <% @events.each do |event| %>
         <div class="col-md-4" style="text-align: justify">
         <h2 class="card-title"><%= event.title%></h2>
-        <h6 class="card-subtitle mb-2 text-muted">By <%= event.user.first_name + " " + event.user.last_name%></h6>
+        <% unless event.user.nil? %>
+          <h6 class="card-subtitle mb-2 text-muted">Organized by <%= event.user.first_name + " " + event.user.last_name%></h6>
+        <% end %>
         <p> <%= event.description %> </p>
         <p><%= link_to "View details", event_path(event.id), class: "btn btn-secondary" %></p>
         </div>

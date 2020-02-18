@@ -2,8 +2,6 @@
   <div class="row" style="justify-content:center">
     <div class="col-md-9">
       <div class="card">
-        
-
         <div class="card-body">
           <h5 class="card-title"><%= @user.first_name%> <%= @user.last_name%></h5>
           <p class="card-text"><%= @user.description%></p>
@@ -16,22 +14,22 @@
         </ul>
         <div class="card-body">
           <%= link_to "Edit your profil", edit_user_registration_path, class: "card-link" %>
-          <a href="#" class="card-link">Another link</a>
         </div>
       </div>
       <br><br>
-      <h4 class="display">Les évènements que tu organises:</h4>
-      <br>
     </div>
+  </div>
+  <h4 class="display">Les évènements que tu organises:</h4>
+  <br>
+  <div class="row" style="justify-content:start">
     <% @events.each do |event|%>
-      <div class="col-md-4" style="text-align: justify">
-        <div class="card" style="width: 18rem;">
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem">
           <div class="card-body">
             <h5 class="card-title"><%= event.title%></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%= event.location%></h6>
+            <h6 class="card-subtitle mb-2 text-muted"> At <%= event.location%></h6>
             <p class="card-text"><%= event.description%></p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <%= link_to "View more", event_path(event.id), class: "card-link" %>
           </div>
         </div>
       </div>

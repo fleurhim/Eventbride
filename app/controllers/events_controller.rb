@@ -21,13 +21,15 @@ class EventsController < ApplicationController
   		)
 
   	if @event.save
-  		redirect_to events_path
+  		redirect_to event_path(@event.id)
   	else
   		redirect_to new_event_path
   	end
   end
 
   def show
+  	@event = Event.find(params[:id])
+  	@end_date = Event.end_date(Event.find(params[:id]))
   end
 
 end

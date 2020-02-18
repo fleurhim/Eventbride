@@ -1,0 +1,48 @@
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <% unless @event.user.nil? %>
+      <h1 class="display-4"><%= @event.title %></h1>
+      <p class="lead"> <%= @event.description %> </p>
+      <% else %>
+      <h1 class="display-4"><%= @event.title %> (ANNULÉ!)</h1>
+      <p class="lead"> <%= @event.description %> </p>
+      <p class="lead"> Sniff...L'organisateur a annulé l'évènement </p>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal"> Details </h4>
+          </div>
+
+          <% unless @event.user.nil? %>
+
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$ <%= @event.price %> </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <hr>
+              <li>Number of participants: <%= @event.attendances.count %> </li>
+              <hr>
+              <li>Organisation contact: <%= @event.user.email %> </li>
+              <hr>
+              <li>Location: <%= @event.location %> </li>
+              <hr>
+              <li>Start Date: <%= @event.start_date %> </li>
+              <hr>
+              <li>End Date: <%= @end_date %> </li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Register Now</button>
+          </div>
+
+          <% else %>
+
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"> Évènement annulé </h1>
+          </div>
+
+          <% end %>
+        </div>
+      </div>
+      <%= link_to "Back", :back %>
+    </div>

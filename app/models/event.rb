@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
 	belongs_to :user
-	has_many :attendances
-	has_many :users, through: :attendances
+	has_many :attendances, dependent: :destroy
+	has_many :users, through: :attendances, dependent: :destroy
 
 	validates :start_date, presence: true
 	validates :duration, presence: true, numericality: { greater_than: 0}
@@ -22,5 +22,9 @@ class Event < ApplicationRecord
 	#	errors.add(:duration, "must be a mutiple of 5")
 	#	end
 	#end
+
+	def self.end_date(event)
+		event.start_date + event.duration
+	end
 		
 end
