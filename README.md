@@ -1,24 +1,20 @@
-# README
+# Eventbride :dancer:	:man_dancing:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to our Eventbride Application! 
 
-Things you may want to cover:
+## Installation :wrench:
 
-* Ruby version
+```bash
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed #To create a random database
+rails s #To start the server
+```
+## Heroku :rocket:
 
-* System dependencies
+https://pure-everglades-18951.herokuapp.com/
 
-* Configuration
+## Team  :heart:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Made in 🥨Strasbourg:beer: by Fleur Himmler
