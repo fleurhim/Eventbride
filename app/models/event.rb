@@ -1,8 +1,11 @@
 class Event < ApplicationRecord
-	belongs_to :user
-	has_many :attendances, dependent: :destroy
-	has_many :users, through: :attendances, dependent: :destroy
+	has_one_attached :picture
 
+	belongs_to :user
+	has_many :attendances
+	has_many :users, through: :attendances
+
+	validates :picture, presence: true
 	validates :start_date, presence: true
 	validates :duration, presence: true, numericality: { greater_than: 0}
 	validates :title, presence: true, length: { in: 5..140 }
@@ -17,11 +20,11 @@ class Event < ApplicationRecord
     	end
 	end
 
-	#def duration_must_be_multiple_of_5
-	#	if (duration % 5) != 0
-	#	errors.add(:duration, "must be a mutiple of 5")
-	#	end
-	#end
+	def duration_must_be_multiple_of_5
+		unless (duration % 5) == 0
+		errors.add(:duration, "must be a mutiple of 5")
+		end
+	end
 
 	def self.end_date(event)
 		event.start_date + event.duration

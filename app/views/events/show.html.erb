@@ -2,11 +2,19 @@
       <% unless @event.user.nil? %>
       <h1 class="display-4"><%= @event.title %></h1>
       <p class="lead"> <%= @event.description %> </p>
+      
+      <%if @event.picture.attached?%>
+        <%= image_tag @event.picture, alt: 'picture' %>
+      <%else%>
+        <p>=== Il n'y a pas encore de photo lié à cet évènement ===</p>
+      <%end%>
+ 
       <% else %>
       <h1 class="display-4"><%= @event.title %> (ANNULÉ!)</h1>
       <p class="lead"> <%= @event.description %> </p>
       <p class="lead"> Sniff...L'organisateur a annulé l'évènement </p>
       <% end %>
+
     </div>
 
     <div class="container">
@@ -18,22 +26,31 @@
 
           <% unless @event.user.nil? %>
 
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$ <%= @event.price %> </h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <hr>
-              <li>Number of participants: <%= @event.attendances.count %> </li>
-              <hr>
-              <li>Organisation contact: <%= @event.user.email %> </li>
-              <hr>
-              <li>Location: <%= @event.location %> </li>
-              <hr>
-              <li>Start Date: <%= @event.start_date %> </li>
-              <hr>
-              <li>End Date: <%= @end_date %> </li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Register Now</button>
-          </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">$ <%= @event.price %> </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <hr>
+                <li>Number of participants: <%= @event.attendances.count %> </li>
+                <hr>
+                <li>Organisation contact: <%= @event.user.email %> </li>
+                <hr>
+                <li>Location: <%= @event.location %> </li>
+                <hr>
+                <li>Start Date: <%= @event.start_date %> </li>
+                <hr>
+                <li>End Date: <%= @end_date %> </li>
+              </ul>
+
+              <% if !user_signed_in? %>
+                <%=link_to "Register Now", new_event_attendance_path(@event.id), class: "btn btn-lg btn-block btn-primary"%>  
+              <% elsif !current_user.is_already_attending?(@event) && !current_user.is_already_admin?(@event)%>
+                <%=link_to "Register Now", new_event_attendance_path(@event.id), class: "btn btn-lg btn-block btn-primary"%> 
+              <% elsif current_user.is_already_attending?(@event) %>
+                <%=link_to "Vous participez déjà à cet évènement", "" , class: "btn btn-lg btn-block btn-secondary"%>
+              <%else%>
+                <%=link_to "Mon espace évènement", event_attendances_path(@event.id), class: "btn btn-lg btn-block btn-primary"%> 
+              <% end %> 
+            </div>
 
           <% else %>
 

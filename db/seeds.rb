@@ -30,7 +30,7 @@ end
 	    description: Faker::Lorem.sentence(word_count: 15),
 	    price: Faker::Number.between(from: 1, to: 1000),
 	    location: Faker::Address.city,
-	    user_id: rand(User.first.id..User.last.id)
+	    user_id: rand(User.first.id..User.last.id),
 	)
 end
 
