@@ -1,5 +1,5 @@
 class Attendance < ApplicationRecord
-	after_create :validation_send
+	#after_create :validation_send
 
   	belongs_to :event
   	belongs_to :user
